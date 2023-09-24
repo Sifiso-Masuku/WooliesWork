@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+{% block content %}
+
+</br>
+</br>
+<form method="POST" action="">
+   <div class="shadow p-3 mb-5 bg-body rounded">
+       
+             <h2><strong>Registration Form</strong></h2>
+             <h5>Select One Option To Continue With Registration:</h5>
+             <hr>
+              {{ form.hidden_tag() }}</center>
+             {{ form.student_type }}</center>
+        <br>  
+        {{ form.Submit(class="btn btn-secondary") }} 
+    </div>
+    
+    
+   
+</form>
+
+{% endblock%}

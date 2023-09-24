@@ -12,7 +12,13 @@
   {% if  stdLName %}
   <h2>Hello {{  stdFNames }}{{  stdLName }}!!</h2>
   {% else %}
-  <h1>Fill In Personal Details:</h1>
+ 
+</br>
+<div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+  <center> <h2><strong>Registration Form</strong></h2></center>
+ <center> <h5>Enter Your Personal Details Below:</h5></center>
+
+<hr>
 </br>
 <form method="POST">
     {{ form.hidden_tag() }}
@@ -24,11 +30,32 @@
     {{ form.stdEmailP(Class="form-control") }}
     {{ form.stdID.label(Class="form-label") }}
     {{ form.stdID(Class="form-control") }}
-    {{ form.stdAddrs.label(Class="form-label") }}
-    {{ form.stdAddrs(Class="form-control") }}
+    {{ form.address.label(Class="form-label") }}
+    {{ form.address(Class="form-control") }}
+    {{ form.stdAge.label(Class="form-label") }}
+    {{ form.stdAge(Class="form-control") }}
+    {{ form.stdGender.label(Class="form-label") }}
+    {{ form.stdGender(Class="form-control") }}
+    {{ form.stdNationality.label(Class="form-label") }}
+    {{ form.stdNationality(Class="form-control") }}
+    {{ form.stdCountry.label(Class="form-label") }}
+    {{ form.stdCountry(Class="form-control") }}
+    
 </br>
 {{ form.submit(class="btn btn-secondary") }}
+
 </form>
+</div>
+<br/><br/><br/>
+<table class="table table-hover table-bordered table-striped">
+
+{% for Information_Captures in Information_Capture %}
+	<tr>
+	<td>{{ Information_Captures.id }}. {{ Information_Captures.user_number }}</a> - {{Information_Captures.stdLName }} - {{Information_Captures.stdFNames }} - {{Information_Captures.stdGender }} 
+	
+	</tr>
+{% endfor %}
 {% endif %}
- 
+
+
 {% endblock %}
