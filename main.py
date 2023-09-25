@@ -1,5 +1,5 @@
 import datetime
-from flask import Flask, render_template,flash, redirect, url_for
+from flask import Flask, render_template,flash, redirect, url_for, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -15,7 +15,7 @@ import requests
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 import psycopg2
-
+import googlemaps
 from manage import UserForm
 #...Fields...
 #BooleanField
@@ -81,6 +81,8 @@ db.init_app(app)
 #Secret Key
 app.config['SECRET_KEY'] = "Sifiso"
 
+# Create a google maps client with API key
+gmaps = googlemaps.Client(key='AIzaSyChqrZgGv5rlJl38qV5aG6NMy8EJgEl_70')
 
 #Create Model
 class Student(db.Model):
@@ -243,6 +245,21 @@ def user_id_validation(stdID):
 #     return None, None, None
 
    #Create a string
+
+# Function to validate a residential address using Google Maps Geocoding API
+def Res_Address_Validate(address):
+    try:
+        geocode_result = gmaps.geocode(address)
+
+        if geocode_result:
+            # Address is valid
+            return True
+        else:
+            # Address is not valid
+            return False
+    except Exception as e:
+        print(f"Error validating address: {e}")
+        return False
 
 
 
